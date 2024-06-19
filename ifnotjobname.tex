@@ -1,0 +1,12 @@
+%--ifnotjobname%
+\def\ifnotjobname#1{{%
+  \expandafter\let\csname\jobname\endcsname\relax%
+  \expandafter\def\csname#1\endcsname{}%
+  \expandafter\ifx\csname\jobname\endcsname\relax}}%
+
+%-dependencies-%
+\input load
+\load documentation
+
+%-documentation-%
+\documentation{ifnotjobname}{This package provides the control sequence {\cs\\ifnotjobname\#1}, to test weather {\cs\#1} is equal to the jobname. This can be useful for executing specific parts of code only if a file is compiled directly or the oposite.}
