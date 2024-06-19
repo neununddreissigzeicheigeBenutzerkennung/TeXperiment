@@ -1,0 +1,22 @@
+%-cs-%
+\def\cs{%
+  \tt%
+  \def\#{\char35\relax}%
+  \def\${\char36\relax}%
+  \def\%{\char37\relax}%
+  \def\&{\char38\relax}%
+  \def\^{\char94\relax}%
+  \def\_{\char95\relax}%
+  \def\\{\char92\relax}%
+  \def\^{\char94\relax}%
+  \def\_{\char95\relax}%
+  \def\{{\char123\relax}%
+  \def\}{\char125\relax}%
+  \def\~{\char126\relax}}%
+
+%-dependencies-%
+\input load
+\load documentation
+
+%-documentation-%
+\documentation{controlsequence}{This package provides the control sequence {\cs\\cs} which changes to a typewriter font and defines control sequences for special character: {\cs\\\#, \\\$, \\\%, \\\&, \\\^, \\\_, \\\{, \\\}, \\\~}. These are useful for typesetting example code like the control sequences in this documentation.}
