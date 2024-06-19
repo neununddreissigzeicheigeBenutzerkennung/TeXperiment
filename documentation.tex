@@ -1,0 +1,14 @@
+%-documentation-%
+\def\documentation#1#2{%
+  \ifnotjobname{#1}%
+  \else%
+    #2%
+    \par\vfill\supereject\end%
+  \fi}%
+
+%-dependencies-%
+\input ifnotjobname
+\input controlsequence
+
+%-documentation-%
+\documentation{documentation}{This package provides the control sequence {\cs\\documentation\#1\#2} to document the content of packeages like this. The documentation is output only when the package of name {\cs\#1} is compiled directly, not when it is {\cs\\input} into another file.}
