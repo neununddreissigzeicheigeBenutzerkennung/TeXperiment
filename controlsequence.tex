@@ -1,18 +1,18 @@
 %-cs-%
 \def\cs{%
   \tt%
-  \def\#{\char35\relax}%
-  \def\${\char36\relax}%
-  \def\%{\char37\relax}%
-  \def\&{\char38\relax}%
-  \def\^{\char94\relax}%
-  \def\_{\char95\relax}%
-  \def\\{\char92\relax}%
-  \def\^{\char94\relax}%
-  \def\_{\char95\relax}%
-  \def\{{\char123\relax}%
-  \def\}{\char125\relax}%
-  \def\~{\char126\relax}}%
+  \chardef\#35\relax%
+  \chardef\$36\relax%
+  \chardef\%37\relax%
+  \chardef\&38\relax%
+  \chardef\^94\relax%
+  \chardef\_95\relax%
+  \chardef\\92\relax%
+  \chardef\^94\relax%
+  \chardef\_95\relax%
+  \chardef\{123\relax%
+  \chardef\}125\relax%
+  \chardef\~126\relax}%
 
 %-dependencies-%
 \input load
