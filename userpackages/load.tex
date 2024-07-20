@@ -1,0 +1,13 @@
+%-load-%
+\def\load#1 {%
+  \expandafter\ifx\csname#1\endcsname\relax%
+    \expandafter\def\csname#1\endcsname{}%
+    \input #1\relax%
+  \fi}%
+
+%-dependencies-%
+\load documentation
+\load controlsequence
+
+%-documentation-%
+\documentation{load}{This package provides the control sequence {\cs\\load}, which is designed to work like {\cs\\input}. The sole difference is that {\cs\\load} tries not to load packages multiple times. For this purpose, a control sequence of the name of the package is created when it is first loaded. Later, when you try to load the package again, this control sequence is found, and the call can thus be ignored. To see how this could be useful besides taking the strain of the compiler, imagine you had a package for documenting other packages that used a package you also wanted to document. Using {\cs\\load} these packages can both be {\cs\\load}ed into each other without having the problem of a loop on compilation.}

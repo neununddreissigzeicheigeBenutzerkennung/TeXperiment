@@ -1,0 +1,66 @@
+%-parameters-%
+  \newcount\digitrange%
+  \newcount\maximumdigit%
+  \newcount\digitvalue%
+  \newcount\nextparameter%
+  \newcount\originalvalue%
+%-customnumeral-%
+  \def\customnumeral#1#2#3#4{{%
+      \ifnum#1>#2%
+          \digitrange#1\relax%
+          \maximumdigit#2\relax%
+      \else%
+          \digitrange#2\relax%
+          \maximumdigit#1\relax\fi%
+      \originalvalue#3\relax%
+      \digitvalue\originalvalue\relax%
+      \ifnum\digitvalue>\maximumdigit%
+          \divide\digitvalue\digitrange%
+          \nextparameter=\digitvalue%
+          \multiply\digitvalue-\digitrange%
+          \advance\digitvalue\originalvalue\relax%
+          \ifnum\digitvalue>\maximumdigit%
+              \advance\digitvalue-\digitrange%
+              \advance\nextparameter1\fi%
+          \customnumeral\digitrange\maximumdigit\nextparameter{#4}\fi%
+      #4\relax}}%
+%-alphanumeral-%
+  \def\alphanumeral#1{%
+      \customnumeral{26}{25}{#1}{%
+          \advance\digitvalue97\relax%
+          \char\digitvalue}}%
+%-Alphanumeral-%
+  \def\Alphanumeral#1{%
+      \customnumeral{26}{25}{#1}{%
+          \advance\digitvalue65\relax%
+          \char\digitvalue}}%
+%-sillynumeral-%
+  \def\simmilarnumeral#1{%
+       \customnumeral{1}{3}{#1}{%
+           \number\digitvalue}}%
+%-dependencies-%
+  \input load %
+  \load documentation %
+%-documentation-%
+  \documentation{customnumeral}{%
+      This package contains the control sequences
+      {\cs\\customnumeral\#1\#2\#3\#4}, {\cs\\alphanumeral\#1},
+      {\cs\\Alphanumeral\#1} and {\cs\\sillynuneral\#1}.  It also uses
+      the {\cs\\count}'s {\cs\\digitrange}, {\cs\\maximumdigit},
+      {\cs\\digitvalue}, {\cs\\nextparameter} and
+      {\cs\\originalvalue}.  \par The main control sequence
+      {\cs\\customnumeral\#1\#2\#3\#4} can be used to display whole
+      number in custom numeral systems.  The {\cs\#1} argument takes
+      maximum value a digit can hold.  {\cs\#2} contains the size of
+      the range of values a digit can hold.  {\cs\#3} contains the
+      value to be displayrd in the numeral system. {\cs\#4} contains a
+      sequence executed to output each digit. The {\cs\\count}
+      {\cs\\digitvalue} can be used to obtain the value of a number to
+      specify how to display it.  \par The control sequence
+      {\cs\\alphanumeral\#1} displays numbers with alphanumeric
+      digits.  The digit a represents the value 0, b 1, \dots, z
+      25.  \par The control sequence {\cs\\Alphanumeral\#1} is verry
+      simmilar to {\cs\\alphanumeral\#1}.  The only difference is,
+      that the digits are in uppercase.  \par The control sequence
+      {\cs\\sillynumeral\#1} displays numbers with the digits -1, 0,
+      1.}

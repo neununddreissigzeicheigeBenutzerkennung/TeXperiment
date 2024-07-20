@@ -1,0 +1,67 @@
+%-registers-%
+\newcount\bulletcount%
+\newdimen\bulletswidth%
+\newdimen\transcendedimension%
+
+%-list-%
+\long\def\list#1{{%
+  \expandafter\ifx\csname lbullet\endcsname\relax%
+    \def\lbullet{\advance\bulletcount1\relax\number\bulletcount.\hskip\fontdimen2\the\font\hskip\fontdimen7\the\font}\fi%
+  \expandafter\ifx\csname newlist\endcsname\relax%
+    \def\newlist{\par\bulletcount0}\fi%
+  \expandafter\ifx\csname itembreak\endcsname\relax%
+    \def\itembreak{\par}\fi%TODO make \break possible
+  \newlist%
+  \setbox0\vbox{%
+    \long\def\item##1{%
+      \noindent%
+      \setbox0\hbox{%
+        \lbullet}%
+      \ifdim\wd0>\bulletswidth%
+        \bulletswidth\wd0\fi%
+      \lbullet%
+      ##1%
+      \itembreak}%
+    \bulletswidth0pt%
+    #1%
+    \global\transcendedimension\bulletswidth}%
+  \bulletswidth\transcendedimension%
+  \long\def\item##1{%
+  \advance\leftskip\bulletswidth%
+    \noindent%
+    \vrule width0pt\hskip-\bulletswidth%
+    \setbox0\hbox{\lbullet}%
+    \lbullet%
+    \hskip-\wd0%
+    \hskip\bulletswidth%
+    ##1%
+    \itembreak%
+  \advance\leftskip-\bulletswidth}%
+  #1}}%
+
+%-dependencies-%
+\input load
+\load documentation
+
+%-documentation-%
+\documentation{alist}{This package provides the control sequence {\cs\\list\#1\{\\item\#\#1\}} which can be used for typesetting lists.
+\list{
+  \item{The list environment is relatively simple to use.}
+  \item{It's bullet points may be defined as anything you want. By default they count the items using natural numbers. Bullet points are assigned by defining the control sequence {\cs\\lbullet}}
+  {\def\lbullet{$\circ\quad$}\item{Bullet points may also be redefined in any local group. This makes them very versatile.}}
+  \item{Lists may be nested inside each other\list{
+    \item{To reset the {\cs\\count} for numbering items automatically or similar things, the control sequence {\cs\\newlist} is executed, whenever a new list begins.}
+    \item{{\cs\\newlist} may be redefined anywhere similar to {\cs\\lbullet}}
+    \item{By default {\cs\\newlist} adds a {\cs\\par} and resets the number.}}}
+  \item{If a {\cs\\item}'s content spans over multiple lines, you will notice, that the Text is aligned behind the {\cs\\item}'s {\cs\\lbullet}. To avoid unwanted grouping this is achieved by simply changing the {\cs\\leftskip} dimension.}
+  \item{To have the {\cs\\lbullet}'s ``sticking out'' at the left, an {\cs\\hskip} is inserted. This would obviously cause trouble if two {\cs\\lbullet}'s were to immediately follow each other.}
+  \item{Such problems are usually avoided by the {\cs\\par} in {\cs\\newlist}. If you want to change this behavior, I wish you good luck.}
+  \item{A better alternative to achieve whatever you want to mess with {\cs\\newlist} for may be to just add a new {\cs\\list} in between two items and to change the {\cs\\lbullet} to whatever is required.}
+  \item{You can manually change the {\cs\\leftskip} for this. You might want to access the {\cs\\dimen} {\cs\\bulletswidth} which is used by {\cs\\list} to store the width of the widest {\cs\\lbullet}.}
+  {\advance\leftskip\bulletswidth\list{
+    \item{As you can see, this is not a very good example of what I just described.}
+    \item{You will just have to believe me that this is different from {\cs\\item} 3.}}}
+  \item{One of the problems with spotting what is different about my previous example is, that {\cs\\item}'s are separated by the same {\cs\\par} that is inserted before a list. While this can be changed by altering {\cs\\newlist} or {\cs\\itembreak}, it is necessary for {\cs\\itembreak} to contain {\cs\\par} at least indirectly.}
+  \item{Now that we have reached double digits, I can stop wasting your time with bad examples, for you can now observe how {\cs\\list} automatically takes care of providing the appropriate space for bullets even if they are of different lengths.}
+  {\def\lbullet{$\circ\quad$}
+  \item{Just to remove all doubt.}}}}
