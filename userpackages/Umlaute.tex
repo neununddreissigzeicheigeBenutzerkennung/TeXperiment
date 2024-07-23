@@ -1,0 +1,40 @@
+%-catcode-%
+\catcode`^^c3=13
+\catcode`^^84=11
+\catcode`^^a4=11
+\catcode`^^96=11
+\catcode`^^b6=11
+\catcode`^^9c=11
+\catcode`^^bc=11
+\catcode`^^9f=11
+
+%-Umlaute-%
+\def^^c3#1{%
+    \ifx#1^^84\"A\fi
+    \ifx#1^^a4\"a\fi
+    \ifx#1^^96\"O\fi
+    \ifx#1^^b6\"o\fi
+    \ifx#1^^9c\"U\fi
+    \ifx#1^^bc\"u\fi
+    \ifx#1^^9f\ss\fi
+}
+
+%-Umlaute-Text-%
+\def\UmlauteText{
+    \catcode`^^c3=13
+}
+
+%-Umlaute-Funktion-%
+\def\UmlauteFunktion{
+    \catcode`^^c3=11
+}
+
+%-preset-%
+\UmlauteText
+
+%-dependencies-%
+\input load
+\load documentation
+
+%-documentation-%
+\documentation{Umlaute}{This package makes german ``Umlaute'' typable in text possible simply by typing them like english letters.  It also provides the controll sequences {\cs\\UmlauteText} which makes ``Umlaute'' typable as by default, and the control sequence {\cs}\\UmlauteFunktion} which makes ``Umlaute'' usable in control sequence names. Both are not possible at the same time.  }
