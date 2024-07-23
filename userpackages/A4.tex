@@ -1,0 +1,18 @@
+\hoffset-.54cm%
+\voffset-.54cm%
+\hsize17cm%
+\vsize25.7cm%
+\def\format{\relax}%
+\output{\format\plainoutput}%
+\def\book{%
+    \advance\hsize-.5cm%
+    \expandafter\def\expandafter\format\expandafter{\format%
+        \ifodd\count0%
+            \advance\hoffset.5cm\fi}%
+    \def\correction{%
+        \advance\hsize-3cm%
+        \expandafter\def\expandafter\format\expandafter{\format%
+            \ifodd\count0\else%
+                \advance\hoffset3cm\fi}}}%
+\def\correction{%
+    \advance\hsize-3cm}%
