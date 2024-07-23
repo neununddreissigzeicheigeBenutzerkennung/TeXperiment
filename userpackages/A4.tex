@@ -1,9 +1,13 @@
+%-A4-%
 \hoffset-.54cm%
 \voffset-.54cm%
 \hsize17cm%
 \vsize25.7cm%
 \def\format{\relax}%
 \output{\format\plainoutput}%
+\parindent0pt%
+
+%-book-%
 \def\book{%
     \advance\hsize-.5cm%
     \expandafter\def\expandafter\format\expandafter{\format%
@@ -14,5 +18,14 @@
         \expandafter\def\expandafter\format\expandafter{\format%
             \ifodd\count0\else%
                 \advance\hoffset3cm\fi}}}%
+
+%-correction-%
 \def\correction{%
     \advance\hsize-3cm}%
+
+%-dependencies-%
+\input load
+\load documentation
+
+%-documentation-%
+\documentation{A4}{This package provides an A4 layout preset, as well as the control sequences {\cs\\book} and {\cs\\correction} which can adjust the format for specific applications.  \par The format has 2cm margins on all sides by default.  \par If the control sequence {\cs\\book} is used the margin at the binding is widened by 0.5cm.  \par{\cs\\correction} provides a 5cm border on the right side or opsite the binding.  }
