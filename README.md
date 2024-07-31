@@ -1,5 +1,3 @@
-# TeXperiment Repository
-
 This repository is focused around the TeX typesetting engine. It mainly contains plain old `.tex` files in the folder `userpackages`.
 
 ## Installation & Usage
