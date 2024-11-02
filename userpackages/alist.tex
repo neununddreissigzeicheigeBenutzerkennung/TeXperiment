@@ -6,7 +6,7 @@
 %-list-%
 \long\def\list#1{{%
   \expandafter\ifx\csname lbullet\endcsname\relax%
-    \def\lbullet{\advance\bulletcount1\relax\number\bulletcount.\hskip\fontdimen2\the\font\hskip\fontdimen7\the\font}\fi%
+    \long\def\lbullet{\advance\bulletcount1\relax\number\bulletcount.\hskip\fontdimen2\the\font\hskip\fontdimen7\the\font}\fi%
   \expandafter\ifx\csname newlist\endcsname\relax%
     \def\newlist{\par\bulletcount0}\fi%
   \expandafter\ifx\csname itembreak\endcsname\relax%
@@ -48,7 +48,7 @@
 \list{
   \item{The list environment is relatively simple to use.}
   \item{It's bullet points may be defined as anything you want. By default they count the items using natural numbers. Bullet points are assigned by defining the control sequence {\cs\\lbullet}}
-  {\def\lbullet{$\circ\quad$}\item{Bullet points may also be redefined in any local group. This makes them very versatile.}}
+  {\long\def\lbullet{$\circ\quad$}\item{Bullet points may also be redefined in any local group. This makes them very versatile.}}
   \item{Lists may be nested inside each other\list{
     \item{To reset the {\cs\\count} for numbering items automatically or similar things, the control sequence {\cs\\newlist} is executed, whenever a new list begins.}
     \item{{\cs\\newlist} may be redefined anywhere similar to {\cs\\lbullet}}
@@ -63,5 +63,5 @@
     \item{You will just have to believe me that this is different from {\cs\\item} 3.}}}
   \item{One of the problems with spotting what is different about my previous example is, that {\cs\\item}'s are separated by the same {\cs\\par} that is inserted before a list. While this can be changed by altering {\cs\\newlist} or {\cs\\itembreak}, it is necessary for {\cs\\itembreak} to contain {\cs\\par} at least indirectly.}
   \item{Now that we have reached double digits, I can stop wasting your time with bad examples, for you can now observe how {\cs\\list} automatically takes care of providing the appropriate space for bullets even if they are of different lengths.}
-  {\def\lbullet{$\circ\quad$}
+  {\long\def\lbullet{$\circ\quad$}
   \item{Just to remove all doubt.}}}}
